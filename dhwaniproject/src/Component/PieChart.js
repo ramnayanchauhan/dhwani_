@@ -30,46 +30,46 @@ const PieChart = () => {
        const [chartData, setChartData]  = useState({});    
        const classes = useStyles();
 
-   const Chart = () => {
-    let empSal = [];
-    let empAge = [];
-    
-// consume API 
-    axios.get("https://dummy.restapiexample.com/api/v1/employees")
-    .then(res => {
-        console.log(res);
-        for(const dataObj of res.data.data){
+//    const Chart = () => {
 
-            if(dataObj.employee_age <= 21){
-            empSal.push(parseInt(dataObj.employee_salary));
-            empAge.push(parseInt(dataObj.employee_age ));
-            }
-
-        }
-
-       setChartData({
-       labels: empAge,
-       datasets: [
-                    {
-                         label: '# of Votes',
-                         data: empSal,
-                         backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)'
-                         ],
-                  
-                         borderWidth: 1
-                     }
-                 ]
-              });
-            })
-            .catch(err =>{
-                console.log(err);
-            })
-  }
+//   }
      useEffect(() => {
-        Chart();
+        let empSal = [];
+        let empAge = [];
+        
+    // consume API 
+        axios.get("https://dummy.restapiexample.com/api/v1/employees")
+        .then(res => {
+            console.log(res);
+            for(const dataObj of res.data.data){
+    
+                if(dataObj.employee_age <= 21){
+                empSal.push(parseInt(dataObj.employee_salary));
+                empAge.push(parseInt(dataObj.employee_age ));
+                }
+    
+            }
+    
+           setChartData({
+           labels: empAge,
+           datasets: [
+                        {
+                             label: '# of Votes',
+                             data: empSal,
+                             backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(54, 162, 235)',
+                                'rgb(255, 205, 86)'
+                             ],
+                      
+                             borderWidth: 1
+                         }
+                     ]
+                  });
+                })
+                .catch(err =>{
+                    console.log(err);
+                })
       }, []);
 
 return(
